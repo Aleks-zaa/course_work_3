@@ -19,7 +19,7 @@ def sort_data(data):
     return sorted(data, key=lambda x: x.get('date'), reverse=True)
 
 
-def data_clean():
+def data_clean(data):
     '''Функция удаляет пустые строки из списка данных.'''
     data = load_data('operations.json')
     data = [item for item in data if item]
