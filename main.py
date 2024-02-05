@@ -1,10 +1,11 @@
 from functions import *
 
-data = data_clean()
+data = data_clean("operations.json")
 data = sort_status(data)
 sorted_data = sort_data(data)
 
 for item in sorted_data[:5]:
+
     from_to = item.get('from', 'not found')
     if from_to == 'not found':
         from_to = from_to
