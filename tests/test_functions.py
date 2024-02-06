@@ -1,12 +1,12 @@
 from course_works.course_work_3.operations.functions import data_clean, sort_data, sort_status, card_hidden, \
-    account_hidden, date_format, load_data
+    account_hidden, date_format, load_data, main_func
 import json
 
 
 def test_sort_data():
     with (open("operations.json", encoding="utf-8") as f):
         data = json.load(f)
-        assert sort_data(data) == sort_data(data)
+        assert sort_data(data) == data
 
 
 def test_sort_status():
@@ -39,3 +39,7 @@ def test_account_hidden():
         data = json.load(f)
         data = data.get('to', 'not found')
         assert account_hidden(data) == 'Счет 3515858638461075****'
+
+
+def test_main_func():
+    assert main_func() == main_func()
