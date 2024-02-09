@@ -1,5 +1,6 @@
-from course_works.course_work_3.operations.functions import data_clean, sort_data, sort_status, card_hidden, \
-    account_hidden, date_format, load_data, main_func
+from ..functions import data_clean, sort_data, sort_status, card_hidden, \
+    account_hidden, date_format, load_data
+from ..main import main
 import json
 
 
@@ -41,5 +42,5 @@ def test_account_hidden():
         assert account_hidden(data) == 'Счет 3515858638461075****'
 
 
-def test_main_func():
-    assert main_func() == main_func()
+def test_main():
+     assert main() == main()
