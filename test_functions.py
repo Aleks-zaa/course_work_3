@@ -1,6 +1,6 @@
-from ..functions import data_clean, sort_data, sort_status, card_hidden, \
+from functions import data_clean, sort_data, sort_status, card_hidden, \
     account_hidden, date_format, load_data
-from ..main import main
+from main import main
 import json
 
 
@@ -21,7 +21,9 @@ def test_data_clean():
 
 
 def test_load_data():
-    assert load_data("operations.json") == load_data("operations.json")
+    with open('temp_operation.json', encoding="utf-8") as file:
+        file = json.load(file)
+        assert load_data('operations.json') == file
 
 
 def test_date_format():
@@ -43,4 +45,6 @@ def test_account_hidden():
 
 
 def test_main():
-     assert main() == main()
+    with open('template_result.txt', 'r', encoding="utf-8") as file:
+        file = file.read()
+        assert main() == file
