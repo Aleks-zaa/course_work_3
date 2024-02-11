@@ -1,7 +1,10 @@
 from functions import data_clean, sort_status, sort_data, date_format, card_hidden, account_hidden
 
+
 def main():
     """ Основная логика программы, которая выводит на экран список из 5 последних выполненных клиентом операций"""
+    # f = open('rust.txt', 'r+')
+    # f.truncate(0)
     data = data_clean("operations.json")
     data = sort_status(data)
     sorted_data = sort_data(data)
@@ -24,8 +27,10 @@ def main():
             to = account_hidden(to)
         amount = item.get('operationAmount', 'not found').get('amount', 'not found')
         currency = item.get('operationAmount').get('currency').get('name', 'not found')
+        # with open('rust.txt', 'a') as f:
+        #     f.write(f'{date} {description}\n{from_to} -> {to}\n{amount} {currency} \n')
         print(f'{date} {description}\n{from_to} -> {to}\n{amount} {currency} \n')
+
 
 if __name__ == "__main__":
     main()
-
