@@ -1,9 +1,12 @@
-from functions import data_clean, sort_status, sort_data, date_format, card_hidden, account_hidden
+from functions import load_data, sort_status, sort_data, date_format, card_hidden, account_hidden
+import json
 
 
 def main():
     """ Основная логика программы, которая выводит на экран список из 5 последних выполненных клиентом операций"""
-    data = data_clean("operations.json")
+    var = []
+    data = load_data("operations.json")
+    data = [item for item in data if item]
     data = sort_status(data)
     sorted_data = sort_data(data)
     for item in sorted_data[:5]:
@@ -25,8 +28,10 @@ def main():
             to = account_hidden(to)
         amount = item.get('operationAmount', 'not found').get('amount', 'not found')
         currency = item.get('operationAmount').get('currency').get('name', 'not found')
-        print(f'{date} {description}\n{from_to} -> {to}\n{amount} {currency} \n')
+        var.append(f'\n{date} {description}\n{from_to} -> {to}\n{amount} {currency}\n')
+    return var
 
 
 if __name__ == "__main__":
-    main()
+    result = ",".join(main()).replace(',', '')
+    print(result)

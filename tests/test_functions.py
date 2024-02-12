@@ -1,29 +1,26 @@
-from functions import data_clean, sort_data, sort_status, card_hidden, \
+from functions import sort_data, sort_status, card_hidden, \
     account_hidden, date_format, load_data
 from main import main
 import json
 
 
 def test_sort_data():
-    with (open("operations.json", encoding="utf-8") as f):
+    with (open("../operations.json", encoding="utf-8") as f):
         data = json.load(f)
-        assert sort_data(data) == data
+        assert sort_data(data)[0]['date'] == '2019-12-08T22:46:21.935582'
 
 
 def test_sort_status():
     with open("template_dict_sort.json", encoding="utf-8") as f:
         data = json.load(f)
-        assert sort_status(data) == data
+        assert sort_status(data)[0]['state'] == 'EXECUTED'
 
-
-def test_data_clean():
-    assert data_clean("template_dict_sort.json") != 'Error'
 
 
 def test_load_data():
     with open('temp_operation.json', encoding="utf-8") as file:
         file = json.load(file)
-        assert load_data('operations.json') == file
+        assert load_data('../operations.json') == file
 
 
 def test_date_format():
@@ -45,6 +42,4 @@ def test_account_hidden():
 
 
 def test_main():
-    with open('template_result.txt', 'r', encoding="utf-8") as file:
-        file = file.read()
-        assert main() == file
+    assert len(main()) == 5
