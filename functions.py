@@ -19,13 +19,6 @@ def sort_data(data):
     return sorted(data, key=lambda x: x.get('date'), reverse=True)
 
 
-def data_clean(file):
-    """Функция удаляет пустые строки из списка данных."""
-    data = load_data(file)
-    data = [item for item in data if item]
-    return data
-
-
 def date_format(value):
     """Функция форматирует дату.("2019-12-08T22:46:21.935582" в 08.12.2019)"""
     return datetime.strftime(datetime.strptime(value, '%Y-%m-%dT%H:%M:%S.%f').date(), '%d.%m.%Y')
